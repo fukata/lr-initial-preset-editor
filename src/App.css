@@ -15,3 +15,7 @@ main .buttons {
   border-top: 1px solid grey;
   padding-top: 10px;
 }
+
+footer {
+  margin-top: 20px;
+}

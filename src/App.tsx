@@ -360,6 +360,15 @@ class App extends React.Component<Props, State> {
             <a className="btn btn-primary" href="#" onClick={this.downloadXMP}>Download</a>
           </div>
         </main>
+
+        <footer className="page-footer text-white bg-dark">
+          <div className="container-fluid text-center text-md-left">
+          </div>
+
+          <div className="footer-copyright text-center py-3">
+            © 2020 Copyright: <a href="https://fukata.dev/">fukata.dev</a>
+          </div>
+        </footer>
       </div>
     );
   }
