@@ -65,6 +65,26 @@ class App extends React.Component<Props, State> {
     this.downloadXMP = this.downloadXMP.bind(this);
   }
 
+  componentDidMount() {
+    this.restoreLocal();
+  }
+
+  saveLocal() {
+    window.localStorage.setItem('current', JSON.stringify(this.state));
+  }
+
+  restoreLocal() {
+    try {
+      const saved = window.localStorage.getItem('current');
+      if (saved) {
+        const restored = JSON.parse(saved);
+        this.setState(restored);
+      }
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
   addISODependent() {
     const isoDependents = this.state.isoDependents;
     isoDependents.push( newISODependent() );
@@ -119,6 +139,8 @@ class App extends React.Component<Props, State> {
     } else {
       console.error(`onChangeField unknown field=${field}`);
     }
+
+    this.saveLocal();
   }
 
   onChangeISODependentField(isoDependent: ISODependent, field: string, e: ChangeEvent<HTMLInputElement>) {
@@ -140,6 +162,7 @@ class App extends React.Component<Props, State> {
       console.error(`onChangeISODependent unknown field=${field}`);
     }
     this.setState({});
+    this.saveLocal();
   }
 
   onDeleteISODependent(isoDependent: ISODependent, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
